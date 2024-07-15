@@ -1,8 +1,7 @@
 package com.engenharia.software.matFIT.dto;
 
-import java.time.LocalDate;
-
-public record AlunoDTO(
+public record AlunoRequest(
+         String cpf,
          String nome,
          String esporte
 ) {

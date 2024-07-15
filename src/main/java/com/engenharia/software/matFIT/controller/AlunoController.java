@@ -1,6 +1,7 @@
 package com.engenharia.software.matFIT.controller;
 
 import com.engenharia.software.matFIT.dto.AlunoDTO;
+import com.engenharia.software.matFIT.dto.AlunoRequest;
 import com.engenharia.software.matFIT.entity.Aluno;
 import com.engenharia.software.matFIT.service.AlunoService;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class AlunoController {
     }
 
     @PostMapping
-    public ResponseEntity<Aluno> cadastrarAluno(@RequestBody Aluno aluno){
+    public ResponseEntity<Aluno> cadastrarAluno(@RequestBody AlunoRequest aluno){
         return ResponseEntity.status(201).body(alunoService.cadastrarAluno(aluno));
     }
 

@@ -1,5 +1,6 @@
 package com.engenharia.software.matFIT.entity;
 
+import com.engenharia.software.matFIT.dto.AlunoRequest;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,6 +27,12 @@ public class Aluno {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataPagamento;
     private Boolean pagamentoAtrasado;
+
+    public Aluno(AlunoRequest aluno) {
+        this.cpf = aluno.cpf();
+        this.nome = aluno.nome();
+        this.esporte = aluno.esporte();
+    }
 
     @Override
     public boolean equals(Object object) {

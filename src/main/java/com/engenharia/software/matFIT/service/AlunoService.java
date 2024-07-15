@@ -1,6 +1,7 @@
 package com.engenharia.software.matFIT.service;
 
 import com.engenharia.software.matFIT.dto.AlunoDTO;
+import com.engenharia.software.matFIT.dto.AlunoRequest;
 import com.engenharia.software.matFIT.entity.Aluno;
 import com.engenharia.software.matFIT.exception.CpfInvalidoException;
 import com.engenharia.software.matFIT.repository.AlunoRepository;
@@ -19,22 +20,24 @@ public class AlunoService {
         this.alunoRepository = alunoRepository;
     }
 
-    public Aluno cadastrarAluno(Aluno aluno){
-        if (!isCPF(aluno.getCpf())) {
+    public Aluno cadastrarAluno(AlunoRequest aluno){
+        if (!isCPF(aluno.cpf())) {
             throw new CpfInvalidoException("Cpf inválido!");
         }
 
-        Aluno alunoExistente = alunoRepository.findByCpf(aluno.getCpf());
+        Aluno alunoExistente = alunoRepository.findByCpf(aluno.cpf());
 
         if (alunoExistente != null) {
             throw new EntityExistsException("Esse CPF já foi cadastrado");
         }
 
-        aluno.setDataPagamento(LocalDate.now().plusMonths(1));
-        aluno.setPagamentoAtrasado(false);
-        alunoRepository.save(aluno);
+        Aluno alunoParaSalvar = new Aluno(aluno);
 
-        return aluno;
+        alunoParaSalvar.setDataPagamento(LocalDate.now().plusMonths(1));
+        alunoParaSalvar.setPagamentoAtrasado(false);
+        alunoRepository.save(alunoParaSalvar);
+
+        return alunoParaSalvar;
     }
 
     private boolean isCPF(String cpf) {
@@ -87,7 +90,6 @@ public class AlunoService {
     private void atualizaDados(Aluno alunoExistente, AlunoDTO alunoAtualizado) {
         alunoExistente.setNome(alunoAtualizado.nome());
         alunoExistente.setEsporte(alunoAtualizado.esporte());
-        alunoExistente.setDataPagamento(alunoAtualizado.diaPagamento());
     }
 
     public Aluno verificaPagamento(String cpf) {
