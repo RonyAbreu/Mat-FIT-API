@@ -30,7 +30,7 @@ public class AlunoService {
             throw new EntityExistsException("Esse CPF já foi cadastrado");
         }
 
-        aluno.setDataPagamento(LocalDate.now().minusMonths(1));
+        aluno.setDataPagamento(LocalDate.now().plusMonths(1));
         aluno.setPagamentoAtrasado(false);
         alunoRepository.save(aluno);
 
