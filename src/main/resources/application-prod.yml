@@ -1,0 +1,12 @@
+spring:
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: ${DB_USER:root}
+        url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:mat_fit}
+        password: ${DB_PASSWORD:12345}
+    output:
+        ansi:
+            enabled: always
+    jpa:
+        hibernate:
+            ddl-auto: update
