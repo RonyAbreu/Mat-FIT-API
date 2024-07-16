@@ -2,6 +2,7 @@ package com.engenharia.software.matFIT.service;
 
 import com.engenharia.software.matFIT.dto.FuncionarioDTO;
 import com.engenharia.software.matFIT.entity.Funcionario;
+import com.engenharia.software.matFIT.exception.CpfInvalidoException;
 import com.engenharia.software.matFIT.repository.FuncionarioRepository;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
@@ -18,6 +19,10 @@ public class FuncionarioService {
     }
     
     public Funcionario cadastrarFuncionario(Funcionario funcionario){
+        if(!isCPF(funcionario.getCpf())) {
+            throw new CpfInvalidoException("CPF inválido ou já cadastrado!");
+        }
+
         Funcionario funcionarioExistente = funcionarioRepository.findByCpf(funcionario.getCpf());
         
         if (funcionarioExistente != null) {
@@ -27,6 +32,15 @@ public class FuncionarioService {
         funcionarioRepository.save(funcionario);
         
         return funcionario;
+    }
+
+    private boolean isCPF(String cpf) {
+        String cpfValido = cpf.replaceAll("\\D", "");
+        if (cpfValido.length() != 11) {
+            return false;
+        }
+
+        return !cpfValido.matches("(\\d)\\1{10}");
     }
     
     public void removerFuncionario(String cpf) {

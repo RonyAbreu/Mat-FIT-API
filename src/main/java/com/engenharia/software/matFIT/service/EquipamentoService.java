@@ -26,7 +26,7 @@ public class EquipamentoService {
 
         equipamentoRepository.save(equipamento);
 
-        return equipamentoExistente;
+        return equipamento;
     }
 
     public Equipamento buscarEquipamento(Long id) {
