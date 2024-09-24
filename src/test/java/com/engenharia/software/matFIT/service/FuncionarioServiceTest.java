@@ -47,7 +47,7 @@ class FuncionarioServiceTest {
     }
 
     @Test
-    void testCadastrarFuncionario_EquipamentoJaCadastrado() {
+    void testCadastrarFuncionario_JaCadastrado() {
         Funcionario funcionario = new Funcionario();
         funcionario.setCpf(CPF_VALIDO); 
 
@@ -75,7 +75,7 @@ class FuncionarioServiceTest {
     }
 
     @Test
-    void testRemoverFuncionario_FuncionarioNaoEncontrado() {
+    void testRemoverFuncionario_NaoEncontrado() {
         when(funcionarioRepository.findByCpf(CPF_VALIDO)).thenReturn(null);
 
         Exception exception = assertThrows(EntityNotFoundException.class, () -> {
@@ -111,7 +111,7 @@ class FuncionarioServiceTest {
     }
 
     @Test
-    void testAtualizarFuncionario_FuncionarioNaoEncontrado() {
+    void testAtualizarFuncionario_NaoEncontrado() {
         when(funcionarioRepository.findByCpf(CPF_VALIDO)).thenReturn(null);
 
         Exception exception = assertThrows(EntityNotFoundException.class, () -> {
@@ -147,7 +147,7 @@ class FuncionarioServiceTest {
     }
 
     @Test
-    void testBuscarFuncionario_FuncionarioNaoEncontrado() {
+    void testBuscarFuncionario_NaoEncontrado() {
         when(funcionarioRepository.findByCpf(CPF_VALIDO)).thenReturn(null);
 
         Exception exception = assertThrows(EntityNotFoundException.class, () -> {

@@ -45,7 +45,7 @@ class AlunoServiceTest {
     }
 
     @Test
-    void testCadastrarAluno_AlunoJaCadastrado() {
+    void testCadastrar_AlunoJaCadastrado() {
         AlunoRequest alunoRequest = new AlunoRequest("12345678900", "Nome Teste", "Academia");
         Aluno alunoExistente = new Aluno("12345678900", "Nome Teste", "Academia");
 
@@ -75,7 +75,7 @@ class AlunoServiceTest {
     }
 
     @Test
-    void testBuscarAluno_AlunoNaoEncontrado() {
+    void testBuscar_AlunoNaoEncontrado() {
         when(alunoRepository.findByCpf("12345678900")).thenReturn(null);
 
         Exception exception = assertThrows(EntityNotFoundException.class, () -> {
@@ -97,7 +97,7 @@ class AlunoServiceTest {
     }
 
     @Test
-    void testRemoverAluno_AlunoNaoEncontrado() {
+    void testRemover_AlunoNaoEncontrado() {
         when(alunoRepository.findByCpf("12345678900")).thenReturn(null);
 
         Exception exception = assertThrows(EntityNotFoundException.class, () -> {
@@ -129,7 +129,7 @@ class AlunoServiceTest {
     }
 
     @Test
-    void testAtualizarAluno_AlunoNaoEncontrado() {
+    void testAtualizar_AlunoNaoEncontrado() {
         when(alunoRepository.findByCpf("12345678900")).thenReturn(null);
 
         Exception exception = assertThrows(EntityNotFoundException.class, () -> {

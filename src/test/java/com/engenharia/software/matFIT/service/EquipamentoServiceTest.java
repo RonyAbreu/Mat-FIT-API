@@ -31,7 +31,7 @@ class EquipamentoServiceTest {
     }
 
     @Test
-    void testCadastrarEquipamento_EquipamentoJaCadastrado() {
+    void testCadastrar_EquipamentoJaCadastrado() {
         Equipamento equipamento = new Equipamento();
         equipamento.setNome("Equipamento Teste");
 
@@ -59,7 +59,7 @@ class EquipamentoServiceTest {
     }
 
     @Test
-    void testBuscarEquipamento_EquipamentoNaoEncontrado() {
+    void testBuscar_EquipamentoNaoEncontrado() {
         when(equipamentoRepository.findById(1L)).thenReturn(Optional.empty());
 
         Exception exception = assertThrows(EntityNotFoundException.class, () -> {
@@ -82,7 +82,7 @@ class EquipamentoServiceTest {
     }
 
     @Test
-    void testRemoverEquipamento_EquipamentoNaoEncontrado() {
+    void testRemover_EquipamentoNaoEncontrado() {
         when(equipamentoRepository.findById(1L)).thenReturn(Optional.empty());
 
         Exception exception = assertThrows(EntityNotFoundException.class, () -> {
@@ -116,7 +116,7 @@ class EquipamentoServiceTest {
     }
 
     @Test
-    void testAtualizarEquipamento_EquipamentoNaoEncontrado() {
+    void testAtualizar_EquipamentoNaoEncontrado() {
         when(equipamentoRepository.findById(1L)).thenReturn(Optional.empty());
 
         Exception exception = assertThrows(EntityNotFoundException.class, () -> {
