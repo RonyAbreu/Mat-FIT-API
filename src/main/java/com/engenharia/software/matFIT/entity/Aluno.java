@@ -34,6 +34,14 @@ public class Aluno {
         this.esporte = aluno.esporte();
     }
 
+    public Aluno(String cpf, String nome, String esporte) {
+        this.cpf = cpf;
+        this.nome = nome;
+        this.esporte = esporte;
+        this.dataPagamento = LocalDate.now();
+        this.pagamentoAtrasado = false;
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;
